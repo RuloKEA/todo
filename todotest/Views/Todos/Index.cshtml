@@ -2,26 +2,46 @@
 @{
     ViewBag.Title = "Index";
 }
+<div style="text-align: center;">
+    @if (ViewBag.Current == null)
+    {
+        <h2>Everything</h2>
+    }
+    @if (ViewBag.Current == false)
+    {
+        <h2>Things to do</h2>
+    }
+    @if (ViewBag.Current == true)
+    {
+        <h2>Things that are done</h2>
+    }
+    <div class="list-group">
+       
+        @foreach (var item in Model)
+        {
 
-<h2>All my todos</h2>
-@foreach (var item in Model)
-{
-    <div>
-        @Html.DisplayNameFor(model => model.Description):
-        @Html.DisplayFor(m => item.Description)|
-        @Html.DisplayNameFor(m => m.Done):
-        @Html.DisplayFor(m => item.Done)|
-        @Html.ActionLink("see todo", "details", new { id = item.TodoId })|
-        @Html.ActionLink("Done", "done", new { id = item.TodoId })
+
+
+            <div style="font-size:150%;">
+                @if (item.Done == false)
+                {
+                @Html.ActionLink(item.Description, "details", new { id = item.TodoId })
+                }
+                @if (item.Done == true)
+                {
+                <s>@Html.ActionLink(item.Description, "details", new { id = item.TodoId })</s>
+                } 
+                |
+                @Html.ActionLink("done?", "done", new { id = item.TodoId })
+
+
+            </div>
+            <hr />
+
+
+
+        }
+
+
     </div>
-    <div>
-      
-    </div>
-    <div>
-
-      
-    </div>
-  
-
-}
-
+</div>

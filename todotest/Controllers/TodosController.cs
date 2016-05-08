@@ -14,10 +14,12 @@ namespace todotest.Controllers
         // GET: Todos 
         public ActionResult Index(bool? done)
         {
+            ViewBag.Current = null;
             List<Todo> todos = db.Todos.ToList();
             if(done != null)
             {
-                todos = todos.Where(i => i.Done == done).ToList();
+               ViewBag.Current = done;
+               todos = todos.Where(i => i.Done == done).ToList();
             }
             return View(todos);
         }
@@ -30,6 +32,7 @@ namespace todotest.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Create = true;
             return View();
         }
         [HttpPost]

@@ -3,27 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Todo List</title>
+    <title>Get It Done</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color : #2C3E50">
+        <div class="container" style="text-align:center">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GetItDone", "Index", "Todos", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("GET IT DONE", "Create", "Todos", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                 
-                    <li>@Html.ActionLink("To Do", "Index", "Todos", new { done = false }, null)</li>
-                    <li>@Html.ActionLink("Done", "Index", "Todos", new { done = true }, null)</li>
+                    <li class="@(ViewBag.Create == true ? "active" : "") ">@Html.ActionLink("NEW", "Create", "Todos")</li>
+                    <li class="@(ViewBag.Current == null && ViewBag.Create == null ? "active" : "") ">@Html.ActionLink("ALL", "Index", "Todos")</li>
+                    <li class="@(ViewBag.Current == false ? "active" : "") ">@Html.ActionLink("ACTIVE", "Index", "Todos", new { done = false }, null)</li>
+                    <li class="@(ViewBag.Current == true ? "active" : "") ">@Html.ActionLink("COMPLETED", "Index", "Todos", new { done = true }, null)</li>
                    
                 </ul>
             </div>
@@ -32,10 +33,8 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
+        
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
