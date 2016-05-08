@@ -10,7 +10,7 @@ namespace todotest.DAL
     public class TodoContext: DbContext
     {
         public DbSet<Todo> Todos { get; set; }
-        public TodoContext():base("DefaultConnection")
+        public TodoContext():base("appharborcs")
         {
         }
     }
