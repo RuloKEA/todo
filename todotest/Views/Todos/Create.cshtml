@@ -1,0 +1,17 @@
+﻿@model todotest.Models.Todo
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @*@Html.EditorForModel()*@
+
+
+    @Html.LabelFor(m => m.Description) @: :
+    @Html.EditorFor(m => m.Description)
+
+    <input type="submit" value="create todo"/>
+}

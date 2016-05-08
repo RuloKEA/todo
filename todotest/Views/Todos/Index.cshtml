@@ -1,0 +1,27 @@
+﻿@model IEnumerable<todotest.Models.Todo>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All my todos</h2>
+@foreach (var item in Model)
+{
+    <div>
+        @Html.DisplayNameFor(model => model.Description):
+        @Html.DisplayFor(m => item.Description)|
+        @Html.DisplayNameFor(m => m.Done):
+        @Html.DisplayFor(m => item.Done)|
+        @Html.ActionLink("see todo", "details", new { id = item.TodoId })|
+        @Html.ActionLink("Done", "done", new { id = item.TodoId })
+    </div>
+    <div>
+      
+    </div>
+    <div>
+
+      
+    </div>
+  
+
+}
+
