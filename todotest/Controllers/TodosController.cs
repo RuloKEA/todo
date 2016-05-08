@@ -11,7 +11,7 @@ namespace todotest.Controllers
     public class TodosController : Controller
     {
         private TodoContext db = new TodoContext();
-        // GET: Todos
+        // GET: Todos 
         public ActionResult Index(bool? done)
         {
             List<Todo> todos = db.Todos.ToList();
