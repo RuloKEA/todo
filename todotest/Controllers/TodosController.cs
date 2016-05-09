@@ -38,15 +38,27 @@ namespace todotest.Controllers
         [HttpPost]
         public ActionResult Create(Todo todo)
         {
-            this.db.Todos.Add(todo);
-            this.db.SaveChanges();
-            return RedirectToAction("index");
+            if(ModelState.IsValid)
+            {
+                this.db.Todos.Add(todo);
+                this.db.SaveChanges();
+                return RedirectToAction("index");
+            }
+            return View();
         }
 
         public ActionResult Done(int id)
         {
             Todo todo = db.Todos.Find(id);
             todo.Done = !todo.Done;
+            if(todo.Done)
+            {
+                todo.Completed = DateTime.Now;
+            }
+            else
+            {
+                todo.Completed = null;
+            }
             db.SaveChanges();
             return RedirectToAction("index");
         }
